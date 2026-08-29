@@ -30,3 +30,20 @@ test("debug tester exercises approval, recovery, resolution, and reset", async (
   await page.getByRole("button", { name: "Reset demo" }).click();
   await expect(page.getByText("18.4%", { exact: true })).toBeVisible();
 });
+
+test("command center remains operable at phone and landscape widths with reduced motion", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/commander");
+  await expect(page.getByText("Checkout failures after checkout-service deployment")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Reset demo" })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(
+    true,
+  );
+
+  await page.setViewportSize({ width: 812, height: 375 });
+  await expect(page.getByRole("heading", { name: "Ready for an agent" })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(
+    true,
+  );
+});
