@@ -41,7 +41,10 @@ export function KpiGrid() {
     },
   ];
   return (
-    <section aria-label="Current incident metrics" className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+    <section
+      aria-label="Current incident metrics"
+      className="grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 xl:grid-cols-4"
+    >
       {cards.map(({ label, value, delta, icon: Icon, danger }) => (
         <Panel className="min-w-0 p-4 sm:p-5" key={label}>
           <div className="flex items-start justify-between gap-3">
@@ -49,7 +52,7 @@ export function KpiGrid() {
             <Icon aria-hidden="true" className={danger ? "text-red-300" : "text-emerald-300"} size={16} />
           </div>
           <div
-            className={`tabular-nums mt-4 truncate text-2xl font-semibold tracking-[-.04em] sm:text-3xl ${danger ? "text-red-100" : "text-white"}`}
+            className={`tabular-nums mt-4 text-xl font-semibold tracking-[-.04em] sm:text-3xl ${danger ? "text-red-100" : "text-white"}`}
           >
             {value}
           </div>
