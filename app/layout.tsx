@@ -16,7 +16,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://webops-commander.vercel.app"),
   title: { default: "WebOps Commander — Agent-Native Incident Response", template: "%s — WebOps Commander" },
-  description: "A WebMCP-enabled incident command center where agents investigate safely and humans authorize consequential actions.",
+  description:
+    "A WebMCP-enabled incident command center where agents investigate safely and humans authorize consequential actions.",
   openGraph: {
     title: "WebOps Commander — Agent-Native Incident Response",
     description: "Production infrastructure designed for humans and agents.",
@@ -32,7 +33,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <a className="skip-link" href="#main-content">Skip to main content</a>
+        <a className="skip-link" href="#main-content">
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

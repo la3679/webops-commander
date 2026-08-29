@@ -17,7 +17,12 @@ export function applyRecoveryStage(services: Service[], stage: number): Service[
   const point = recoverySequence[Math.min(Math.max(stage, 0), recoverySequence.length - 1)];
   return services.map((service) =>
     service.name === "checkout-service"
-      ? { ...service, health: stage >= recoverySequence.length - 1 ? "HEALTHY" : "RECOVERING", errorRate: point.errorRate, p95LatencyMs: point.latencyMs }
+      ? {
+          ...service,
+          health: stage >= recoverySequence.length - 1 ? "HEALTHY" : "RECOVERING",
+          errorRate: point.errorRate,
+          p95LatencyMs: point.latencyMs,
+        }
       : service,
   );
 }

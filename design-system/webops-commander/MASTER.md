@@ -12,19 +12,19 @@ This file is the visual source of truth. It adapts the UI/UX Pro Max operations-
 
 ## Tokens
 
-| Role | Value |
-| --- | --- |
-| Canvas | `#07090d` |
+| Role            | Value     |
+| --------------- | --------- |
+| Canvas          | `#07090d` |
 | Elevated canvas | `#0b0e14` |
-| Panel | `#10141c` |
-| Panel strong | `#151a24` |
-| Border | `#252b37` |
-| Text | `#f4f6f8` |
-| Muted text | `#98a2b3` |
-| WebMCP | `#8b83ff` |
-| Healthy | `#36d399` |
-| Warning | `#f5b942` |
-| Critical | `#ff5f6d` |
+| Panel           | `#10141c` |
+| Panel strong    | `#151a24` |
+| Border          | `#252b37` |
+| Text            | `#f4f6f8` |
+| Muted text      | `#98a2b3` |
+| WebMCP          | `#8b83ff` |
+| Healthy         | `#36d399` |
+| Warning         | `#f5b942` |
+| Critical        | `#ff5f6d` |
 
 ## Component rules
 
