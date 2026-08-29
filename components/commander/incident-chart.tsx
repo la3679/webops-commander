@@ -1,0 +1,13 @@
+"use client";
+
+import { Area, AreaChart, CartesianGrid, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Activity, CircleDot } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Panel } from "@/components/ui/panel";
+import { getChartData, useCommanderStore } from "@/lib/store/use-commander-store";
+
+export function IncidentChart() {
+  const data = useCommanderStore(getChartData);
+  const stage = useCommanderStore((state) => state.recoveryStage);
+  return <Panel className="overflow-hidden"><div className="flex flex-col gap-3 border-b border-[var(--border)] px-5 py-4 sm:flex-row sm:items-center sm:justify-between"><div><div className="flex items-center gap-2 text-sm font-semibold"><Activity aria-hidden="true" className="text-red-300" size={16}/>Checkout error rate</div><p className="mt-1 text-xs text-[var(--muted)]">Failure rate spiked immediately after v2.18.4 deployed.</p></div><div className="flex gap-2"><Badge tone="critical"><CircleDot aria-hidden="true" size={10}/> anomaly</Badge>{stage > 0 && <Badge tone="healthy">rollback in progress</Badge>}</div></div><div className="h-[292px] px-2 py-4 sm:px-4"><ResponsiveContainer height="100%" width="100%"><AreaChart data={data} margin={{ top: 12, right: 16, left: -14, bottom: 0 }}><defs><linearGradient id="error-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="#ff5f6d" stopOpacity={0.3}/><stop offset="100%" stopColor="#ff5f6d" stopOpacity={0}/></linearGradient></defs><CartesianGrid stroke="#202631" strokeDasharray="3 5" vertical={false}/><XAxis axisLine={false} dataKey="time" fontSize={11} stroke="#7f8998" tickLine={false}/><YAxis axisLine={false} domain={[0, 20]} fontSize={11} stroke="#7f8998" tickFormatter={(value) => `${value}%`} tickLine={false}/><Tooltip contentStyle={{ background: "#111722", border: "1px solid #303746", borderRadius: 10, fontSize: 12 }} formatter={(value) => [`${value}%`, "Error rate"]}/><ReferenceLine label={{ value: "DEPLOY v2.18.4", fill: "#bcb8ff", fontSize: 10, position: "insideTopRight" }} stroke="#8b83ff" strokeDasharray="4 5" x="12:00"/>{stage > 0 && <ReferenceLine label={{ value: "ROLLBACK v2.18.3", fill: "#86efc3", fontSize: 10, position: "insideTopRight" }} stroke="#36d399" strokeDasharray="4 5" x="12:04"/>}<Area animationDuration={500} dataKey="errorRate" fill="url(#error-fill)" isAnimationActive stroke="#ff6f7c" strokeWidth={2.5} type="monotone"/></AreaChart></ResponsiveContainer></div><p className="sr-only">Error rate was 0.6 percent before deployment, rose to 18.4 percent, and {stage > 0 ? `is recovering at stage ${stage} of 4.` : "remains elevated."}</p></Panel>;
+}
