@@ -1,10 +1,12 @@
 "use client";
 
 import { useCommanderStore } from "@/lib/store/use-commander-store";
+import { useWebMcpRegistration } from "@/lib/webmcp/register-tools";
 import { ActivityRail } from "./activity-rail";
 import { ApprovalDialog } from "./approval-dialog";
 import { CommandHeader } from "./command-header";
 import { DiagnosticsPanel } from "./diagnostics-panel";
+import { DeveloperToolTester } from "./developer-tool-tester";
 import { IncidentChart } from "./incident-chart";
 import { KpiGrid } from "./kpi-grid";
 import { PromptCard } from "./prompt-card";
@@ -12,6 +14,7 @@ import { ResolutionSummary } from "./resolution-summary";
 import { ServiceTopology } from "./service-topology";
 
 export function CommanderShell() {
+  useWebMcpRegistration();
   const incident = useCommanderStore((state) => state.incident);
 
   return (
@@ -29,6 +32,7 @@ export function CommanderShell() {
         <ActivityRail />
       </div>
       <ApprovalDialog />
+      <DeveloperToolTester />
     </main>
   );
 }

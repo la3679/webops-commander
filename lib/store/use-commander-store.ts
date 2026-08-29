@@ -50,7 +50,14 @@ export const useCommanderStore = create<CommanderState>((set, get) => ({
     const existing = get().pendingAction;
     if (existing && ["PENDING", "APPROVED"].includes(existing.status)) return existing;
     const action: PendingAction = { id: "ACT-104", type: "ROLLBACK", service: "checkout-service", currentVersion: "v2.18.4", targetVersion: "v2.18.3", reason, status: "PENDING", requestedAt: activityTime(), decidedAt: null, executedAt: null };
-    set({ pendingAction: action });
+    set((state) => ({
+      pendingAction: action,
+      incident: {
+        ...state.incident,
+        status: state.incident.status === "INCIDENT" ? "INVESTIGATING" : state.incident.status,
+        hypothesis: "v2.18.4 introduced incompatible payment-token issuer validation.",
+      },
+    }));
     return action;
   },
   approveAction: (id) => {
