@@ -15,7 +15,7 @@ export function CommandHeader() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#090c11]/95 backdrop-blur-xl">
-      <div className="mx-auto flex min-h-[72px] max-w-[1720px] items-center gap-4 px-3 sm:px-5 xl:px-6">
+      <div className="mx-auto flex min-h-[72px] max-w-[1720px] items-center gap-2 px-3 sm:gap-4 sm:px-5 xl:px-6">
         <Link aria-label="WebOps Commander home" href="/">
           <BrandMark className="hidden sm:inline-flex" />
           <BrandMark compact className="sm:hidden" />

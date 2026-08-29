@@ -33,8 +33,16 @@ test("debug tester exercises approval, recovery, resolution, and reset", async (
 
 test("command center remains operable at phone and landscape widths with reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.setViewportSize({ width: 375, height: 812 });
+  await page.setViewportSize({ width: 320, height: 812 });
   await page.goto("/commander");
+  const severityBadge = page.getByText("SEV-1", { exact: true });
+  const revenueMetric = page.getByText("$21.4K/min", { exact: true });
+  await expect(severityBadge).toBeVisible();
+  await expect(revenueMetric).toBeVisible();
+  expect(await severityBadge.evaluate((element) => element.getBoundingClientRect().height <= 26)).toBe(true);
+  expect(await revenueMetric.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+
+  await page.setViewportSize({ width: 375, height: 812 });
   await expect(page.getByText("Checkout failures after checkout-service deployment")).toBeVisible();
   await expect(page.getByRole("button", { name: "Reset demo" })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(
@@ -46,4 +54,11 @@ test("command center remains operable at phone and landscape widths with reduced
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(
     true,
   );
+});
+
+test("developer tester provides actionable malformed JSON feedback", async ({ page }) => {
+  await page.goto("/commander?debug=webmcp");
+  await page.getByLabel("JSON input").fill("{");
+  await page.getByRole("button", { name: "Run Get active incident" }).click();
+  await expect(page.getByText("Invalid JSON input. Enter a valid JSON object and try again.")).toBeVisible();
 });

@@ -58,7 +58,13 @@ export function DeveloperToolTester() {
     try {
       setOutput(JSON.stringify(await executeWebMcpTool(name, JSON.parse(input)), null, 2));
     } catch (error) {
-      setOutput(error instanceof Error ? error.message : "Invalid JSON input.");
+      setOutput(
+        error instanceof SyntaxError
+          ? "Invalid JSON input. Enter a valid JSON object and try again."
+          : error instanceof Error
+            ? error.message
+            : "The developer tool could not run.",
+      );
     }
   };
   return (
