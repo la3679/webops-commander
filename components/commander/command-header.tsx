@@ -56,7 +56,7 @@ export function CommandHeader() {
           >
             <Code2 aria-hidden="true" size={18} />
           </a>
-          <Button onClick={reset} variant="ghost">
+          <Button aria-label="Reset demo" onClick={reset} variant="ghost">
             <RotateCcw aria-hidden="true" size={15} />
             <span className="hidden sm:inline">Reset demo</span>
           </Button>
