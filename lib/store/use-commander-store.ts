@@ -13,6 +13,12 @@ import {
 
 const clone = <T>(value: T): T => structuredClone(value);
 const activityTime = () => new Date().toISOString();
+let recoveryTimers: number[] = [];
+
+function clearRecoveryTimers() {
+  recoveryTimers.forEach((timer) => window.clearTimeout(timer));
+  recoveryTimers = [];
+}
 
 export interface CommanderState {
   incident: Incident;
@@ -23,6 +29,7 @@ export interface CommanderState {
   highlightedServices: ServiceName[];
   webMcpStatus: "CHECKING" | "CONNECTED" | "UNAVAILABLE" | "ERROR";
   webMcpError: string | null;
+  resetRevision: number;
   addActivity: (activity: Omit<AgentActivity, "id" | "timestamp">) => void;
   setWebMcpStatus: (status: CommanderState["webMcpStatus"], error?: string) => void;
   markInvestigating: (hypothesis?: string) => void;
@@ -52,6 +59,7 @@ export const useCommanderStore = create<CommanderState>((set, get) => ({
   ...initialState(),
   webMcpStatus: "CHECKING",
   webMcpError: null,
+  resetRevision: 0,
   addActivity: (activity) =>
     set((state) => ({
       activities: [
@@ -141,7 +149,10 @@ export const useCommanderStore = create<CommanderState>((set, get) => ({
       ),
       recoveryStage: 1,
     }));
-    [2, 3, 4].forEach((stage, index) => window.setTimeout(() => get().advanceRecovery(stage), 1800 * (index + 1)));
+    clearRecoveryTimers();
+    recoveryTimers = [2, 3, 4].map((stage, index) =>
+      window.setTimeout(() => get().advanceRecovery(stage), 1800 * (index + 1)),
+    );
     return { ok: true };
   },
   advanceRecovery: (stage) =>
@@ -174,7 +185,10 @@ export const useCommanderStore = create<CommanderState>((set, get) => ({
     });
     return { ok: true };
   },
-  resetDemo: () => set({ ...initialState() }),
+  resetDemo: () => {
+    clearRecoveryTimers();
+    set((state) => ({ ...initialState(), resetRevision: state.resetRevision + 1 }));
+  },
 }));
 
 export function getCurrentMetrics(state: Pick<CommanderState, "services" | "recoveryStage">) {
