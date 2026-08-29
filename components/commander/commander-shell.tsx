@@ -1,6 +1,7 @@
 "use client";
 
 import { useCommanderStore } from "@/lib/store/use-commander-store";
+import { useWebMcpRegistration } from "@/lib/webmcp/register-tools";
 import { ActivityRail } from "./activity-rail";
 import { ApprovalDialog } from "./approval-dialog";
 import { CommandHeader } from "./command-header";
@@ -12,6 +13,7 @@ import { ResolutionSummary } from "./resolution-summary";
 import { ServiceTopology } from "./service-topology";
 
 export function CommanderShell() {
+  useWebMcpRegistration();
   const incident = useCommanderStore((state) => state.incident);
 
   return (
