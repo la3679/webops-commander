@@ -1,0 +1,7 @@
+.next/
+node_modules/
+coverage/
+playwright-report/
+test-results/
+public/docs/*.png
+MASTER BUILD PROMPT — WEBOPS COMMANDER.md
