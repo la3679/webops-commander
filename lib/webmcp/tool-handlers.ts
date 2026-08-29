@@ -66,7 +66,6 @@ function runHandler(name: ToolName, input: UnknownRecord): ReturnType<typeof suc
       return success({ deployments: deployments.filter((item) => !input.service || item.service === input.service), timeRange: input.timeRange });
     case "compare_deployments": {
       if (input.service !== "checkout-service" || input.fromVersion !== "v2.18.3" || input.toVersion !== "v2.18.4") return failure("DEPLOYMENT_NOT_FOUND", "The requested version pair is not present in this deterministic scenario.");
-      state.markInvestigating("v2.18.4 introduced incompatible payment-token issuer validation.");
       return success({ service: "checkout-service", fromVersion: "v2.18.3", toVersion: "v2.18.4", changes: [{ area: "payment token validation", change: "Require the internal issuer allowlist entry before accepting production tokens.", incidentCorrelation: "HIGH" }], likelyRootCause: "Legitimate payments.prod tokens are rejected by the new issuer check." });
     }
     case "search_runbooks": {
