@@ -1,12 +1,15 @@
 "use client";
 
+import { useMemo } from "react";
 import { ArrowDownRight, ArrowUpRight, Banknote, Gauge, ShoppingCart, TriangleAlert } from "lucide-react";
 import { Panel } from "@/components/ui/panel";
 import { getCurrentMetrics, useCommanderStore } from "@/lib/store/use-commander-store";
 
 export function KpiGrid() {
-  const metrics = useCommanderStore(getCurrentMetrics);
-  const recovering = useCommanderStore((state) => state.recoveryStage > 0);
+  const services = useCommanderStore((state) => state.services);
+  const recoveryStage = useCommanderStore((state) => state.recoveryStage);
+  const metrics = useMemo(() => getCurrentMetrics({ services, recoveryStage }), [services, recoveryStage]);
+  const recovering = recoveryStage > 0;
   const cards = [
     { label: "Checkout error rate", value: `${metrics.errorRate.toFixed(1)}%`, delta: recovering ? "falling toward 0.7%" : "+17.8 percentage points", icon: TriangleAlert, danger: true },
     { label: "P95 latency", value: metrics.latencyMs >= 1000 ? `${(metrics.latencyMs / 1000).toFixed(1)}s` : `${metrics.latencyMs}ms`, delta: recovering ? "recovering" : "+658% from baseline", icon: Gauge, danger: true },
