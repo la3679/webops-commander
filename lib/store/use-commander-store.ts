@@ -192,14 +192,12 @@ export function getChartData(state: Pick<CommanderState, "recoveryStage">) {
   if (state.recoveryStage === 0) return metricHistory;
   return [
     ...metricHistory,
-    ...recoverySequence
-      .slice(1, state.recoveryStage + 1)
-      .map((point, index) => ({
-        time: `12:${String(4 + index).padStart(2, "0")}`,
-        ...point,
-        requestsPerMinute: 1280,
-        ...(index === 0 ? { event: "ROLLBACK" as const, eventLabel: "ROLLBACK v2.18.3" } : {}),
-      })),
+    ...recoverySequence.slice(1, state.recoveryStage + 1).map((point, index) => ({
+      time: `12:${String(4 + index).padStart(2, "0")}`,
+      ...point,
+      requestsPerMinute: 1280,
+      ...(index === 0 ? { event: "ROLLBACK" as const, eventLabel: "ROLLBACK v2.18.3" } : {}),
+    })),
   ];
 }
 

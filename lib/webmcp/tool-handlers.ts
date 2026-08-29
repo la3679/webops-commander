@@ -211,16 +211,14 @@ function audit(
   durationMs: number,
   resultSummary: string,
 ) {
-  useCommanderStore
-    .getState()
-    .addActivity({
-      toolName: name,
-      category: toolDefinitionByName[name].category,
-      inputSummary: input && typeof input === "object" ? inputSummary(input as UnknownRecord) : String(input ?? ""),
-      status,
-      durationMs,
-      resultSummary,
-    });
+  useCommanderStore.getState().addActivity({
+    toolName: name,
+    category: toolDefinitionByName[name].category,
+    inputSummary: input && typeof input === "object" ? inputSummary(input as UnknownRecord) : String(input ?? ""),
+    status,
+    durationMs,
+    resultSummary,
+  });
 }
 function summarize(name: ToolName, data: unknown) {
   const value = data as Record<string, unknown>;
