@@ -65,7 +65,7 @@ This separation makes handlers directly testable without claiming that the devel
 
 ### Presentation
 
-Next.js renders a landing page and `/commander`. The command center composes the incident header, KPIs, synchronized chart, service topology, evidence tabs, prompt, approval dialog, activity rail, and resolution view. Stable store selectors avoid render loops and preserve the hierarchy on tablet and mobile.
+Next.js renders a landing page and `/commander`. The command center composes the incident header, explanatory KPIs, synchronized chart, service topology, evidence tabs, prompt, approval dialog, activity rail, settings dialog, responsive developer tester, and resolution view. Stable store selectors avoid render loops and preserve the hierarchy on tablet and mobile.
 
 ## Human approval protocol
 
@@ -100,7 +100,7 @@ The app uses semantic landmarks, a skip link, focus-visible rings, labeled butto
 
 ## Operational characteristics
 
-- **Persistence:** in-memory by design; refresh or Reset Demo restores known state.
+- **Persistence:** in-memory by design; refresh or Reset Demo restores known state. Reset also cancels every scheduled recovery stage before replacing state, preventing delayed mutations after a mid-recovery reset.
 - **Network:** none after application assets load.
 - **Authentication:** none; the scenario is synthetic.
 - **Fallback:** the dashboard works and reports unavailable when WebMCP is absent.

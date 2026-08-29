@@ -61,10 +61,11 @@ See [WEBMCP.md](docs/WEBMCP.md) for schemas, outputs, errors, mutation behavior,
 - premium dark operations UI with a focused command-center hierarchy;
 - responsive landing page and dashboard at desktop, tablet, and mobile widths;
 - synchronized error-rate and latency visualization with deployment/rollback markers;
-- interactive service topology, KPI cards, logs, traces, and deployment history;
+- interactive service topology, KPI cards with hover/focus explanations, logs, traces, and deployment history;
 - visible WebMCP availability and a real-time agent activity/audit timeline;
-- explicit approval, rejection, guarded execution, staged recovery, resolution, and one-click reset;
-- optional `?debug=webmcp` tester that invokes the same handlers and is clearly labeled as a developer aid—not the browser WebMCP transport;
+- explicit approval, rejection, guarded execution, staged recovery, resolution, and a confirmed one-click reset that cancels in-flight recovery timers;
+- a focused Settings panel for demo controls and WebMCP status;
+- a spacious, responsive developer tester—available from Settings or `?debug=webmcp`—that invokes the same handlers and is clearly labeled as a developer aid, not the browser WebMCP transport;
 - deterministic data and state transitions for a reliable hackathon demo.
 
 ## Architecture

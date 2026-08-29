@@ -75,12 +75,15 @@ function TopologyNode({
   const unhealthy = service.health !== "HEALTHY";
   return (
     <div
+      aria-label={`${name}, version ${service.version}, ${service.health.toLowerCase()}`}
       className={cn(
-        "relative flex items-center gap-2 rounded-[10px] border bg-[#0b0f15] px-3 py-2.5 transition-[border-color,box-shadow] duration-300",
+        "relative flex cursor-help items-center gap-2 rounded-[10px] border bg-[#0b0f15] px-3 py-2.5 transition-[border-color,background-color,box-shadow] duration-300 hover:border-slate-500 hover:bg-[#111722] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]",
         compact ? "min-w-0 justify-center" : "min-w-[220px]",
         unhealthy ? "border-red-400/35 shadow-[0_0_25px_rgba(255,95,109,.09)]" : "border-[var(--border)]",
         active && "border-violet-300/70 shadow-[0_0_28px_rgba(139,131,255,.24)]",
       )}
+      tabIndex={0}
+      title={`${name} · ${service.version} · ${service.health}`}
     >
       <Boxes aria-hidden="true" className={unhealthy ? "text-red-300" : "text-emerald-300"} size={14} />
       <div className="min-w-0">

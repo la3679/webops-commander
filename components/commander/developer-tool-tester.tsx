@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Bug, Play, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -34,21 +34,12 @@ const defaults: Record<ToolName, Record<string, unknown>> = {
   },
 };
 
-export function DeveloperToolTester() {
-  const [visible, setVisible] = useState(false);
-  const [open, setOpen] = useState(true);
+export function DeveloperToolTester({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const [name, setName] = useState<ToolName>("get_active_incident");
   const [input, setInput] = useState(JSON.stringify(defaults.get_active_incident, null, 2));
   const [output, setOutput] = useState("Run a handler to inspect its structured result.");
-  useEffect(() => {
-    const task = window.setTimeout(
-      () => setVisible(new URLSearchParams(window.location.search).get("debug") === "webmcp"),
-      0,
-    );
-    return () => window.clearTimeout(task);
-  }, []);
   const title = useMemo(() => toolDefinitions.find((tool) => tool.name === name)?.title, [name]);
-  if (!visible || !open) return null;
+  if (!open) return null;
   const changeTool = (next: ToolName) => {
     setName(next);
     setInput(JSON.stringify(defaults[next], null, 2));
@@ -70,26 +61,26 @@ export function DeveloperToolTester() {
   return (
     <aside
       aria-label="Developer Tool Tester"
-      className="fixed inset-x-3 bottom-3 z-30 mx-auto max-w-3xl rounded-[16px] border border-amber-300/25 bg-[#12161f]/95 p-4 shadow-2xl backdrop-blur-xl"
+      className="fixed inset-x-3 bottom-3 z-30 mx-auto max-h-[calc(100dvh-1.5rem)] max-w-6xl overflow-x-hidden overflow-y-auto rounded-[18px] border border-amber-300/25 bg-[#12161f]/97 p-5 shadow-[0_30px_100px_rgba(0,0,0,.75)] backdrop-blur-xl sm:inset-x-5 sm:bottom-5 sm:p-6"
     >
       <div className="flex items-center gap-3">
         <span className="grid size-9 place-items-center rounded-lg bg-amber-300/10 text-amber-200">
           <Bug aria-hidden="true" size={16} />
         </span>
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2 text-sm font-semibold">
+          <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
             Developer Tool Tester <Badge tone="warning">Not WebMCP transport</Badge>
           </div>
           <p className="mt-0.5 text-[10px] text-[var(--muted)]">
             Directly invokes the same validated handlers for local debugging. Calls appear in the audit rail.
           </p>
         </div>
-        <Button aria-label="Close developer tester" onClick={() => setOpen(false)} variant="ghost">
+        <Button aria-label="Close developer tester" onClick={() => onOpenChange(false)} variant="ghost">
           <X aria-hidden="true" size={15} />
         </Button>
       </div>
-      <div className="mt-4 grid gap-3 md:grid-cols-[210px_1fr_1fr]">
-        <div>
+      <div className="mt-5 grid gap-4 lg:grid-cols-[230px_minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="min-w-0">
           <label className="text-[10px] font-bold text-[var(--muted)] uppercase" htmlFor="tool-select">
             Tool
           </label>
@@ -110,20 +101,20 @@ export function DeveloperToolTester() {
             Run {title}
           </Button>
         </div>
-        <div>
+        <div className="min-w-0">
           <label className="text-[10px] font-bold text-[var(--muted)] uppercase" htmlFor="tool-input">
             JSON input
           </label>
           <textarea
-            className="mt-1 h-28 w-full resize-none rounded-lg border border-[var(--border-strong)] bg-[#090c11] p-3 font-mono text-[10px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
+            className="mt-1 h-44 w-full resize-y rounded-lg border border-[var(--border-strong)] bg-[#090c11] p-4 font-mono text-[11px] leading-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] lg:h-64"
             id="tool-input"
             onChange={(event) => setInput(event.target.value)}
             value={input}
           />
         </div>
-        <div>
+        <div className="min-w-0">
           <div className="text-[10px] font-bold text-[var(--muted)] uppercase">Structured result</div>
-          <pre className="mt-1 h-28 overflow-auto rounded-lg border border-[var(--border)] bg-[#090c11] p-3 text-[9px] text-slate-300">
+          <pre className="mt-1 h-44 overflow-auto whitespace-pre-wrap break-words rounded-lg border border-[var(--border)] bg-[#090c11] p-4 text-[10px] leading-5 text-slate-300 lg:h-64">
             {output}
           </pre>
         </div>

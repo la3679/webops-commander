@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Code2, RotateCcw, ShieldCheck, WifiOff } from "lucide-react";
+import { Code2, RotateCcw, Settings2, ShieldCheck, WifiOff } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCommanderStore } from "@/lib/store/use-commander-store";
 
-export function CommandHeader() {
+export function CommandHeader({ onOpenSettings }: { onOpenSettings: () => void }) {
   const incident = useCommanderStore((state) => state.incident);
   const status = useCommanderStore((state) => state.webMcpStatus);
   const reset = useCommanderStore((state) => state.resetDemo);
@@ -56,6 +56,10 @@ export function CommandHeader() {
           >
             <Code2 aria-hidden="true" size={18} />
           </a>
+          <Button aria-label="Open settings" onClick={onOpenSettings} variant="ghost">
+            <Settings2 aria-hidden="true" size={15} />
+            <span className="hidden xl:inline">Settings</span>
+          </Button>
           <Button aria-label="Reset demo" onClick={reset} variant="ghost">
             <RotateCcw aria-hidden="true" size={15} />
             <span className="hidden sm:inline">Reset demo</span>
