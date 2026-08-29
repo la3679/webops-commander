@@ -6,6 +6,7 @@ import { ActivityRail } from "./activity-rail";
 import { ApprovalDialog } from "./approval-dialog";
 import { CommandHeader } from "./command-header";
 import { DiagnosticsPanel } from "./diagnostics-panel";
+import { DeveloperToolTester } from "./developer-tool-tester";
 import { IncidentChart } from "./incident-chart";
 import { KpiGrid } from "./kpi-grid";
 import { PromptCard } from "./prompt-card";
@@ -31,6 +32,7 @@ export function CommanderShell() {
         <ActivityRail />
       </div>
       <ApprovalDialog />
+      <DeveloperToolTester />
     </main>
   );
 }
