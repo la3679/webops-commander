@@ -22,12 +22,19 @@ export function CommanderShell() {
       <CommandHeader />
       <div className="mx-auto grid max-w-[1720px] gap-4 px-3 py-4 sm:px-5 lg:grid-cols-[minmax(0,1fr)_330px] xl:px-6">
         <div className="min-w-0 space-y-4">
-          {incident.status === "RESOLVED" ? <ResolutionSummary /> : <>
-            <KpiGrid />
-            <IncidentChart />
-            <div className="grid gap-4 xl:grid-cols-[minmax(360px,.8fr)_minmax(500px,1.2fr)]"><ServiceTopology /><DiagnosticsPanel /></div>
-            <PromptCard />
-          </>}
+          {incident.status === "RESOLVED" ? (
+            <ResolutionSummary />
+          ) : (
+            <>
+              <KpiGrid />
+              <IncidentChart />
+              <div className="grid gap-4 xl:grid-cols-[minmax(360px,.8fr)_minmax(500px,1.2fr)]">
+                <ServiceTopology />
+                <DiagnosticsPanel />
+              </div>
+              <PromptCard />
+            </>
+          )}
         </div>
         <ActivityRail />
       </div>

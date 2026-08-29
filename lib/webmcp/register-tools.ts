@@ -36,7 +36,8 @@ export function useWebMcpRegistration() {
         }
         if (active) setStatus("CONNECTED");
       } catch (error) {
-        if (!controller.signal.aborted && active) setStatus("ERROR", error instanceof Error ? error.message : "Tool registration failed.");
+        if (!controller.signal.aborted && active)
+          setStatus("ERROR", error instanceof Error ? error.message : "Tool registration failed.");
       }
     }
 
