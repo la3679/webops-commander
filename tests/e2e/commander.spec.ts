@@ -62,3 +62,36 @@ test("developer tester provides actionable malformed JSON feedback", async ({ pa
   await page.getByRole("button", { name: "Run Get active incident" }).click();
   await expect(page.getByText("Invalid JSON input. Enter a valid JSON object and try again.")).toBeVisible();
 });
+
+test("settings exposes demo controls and the expanded developer tester", async ({ page }) => {
+  await page.goto("/commander");
+  await page.getByRole("button", { name: "Open settings" }).click();
+  const settings = page.getByRole("dialog", { name: "Command center settings" });
+  await expect(settings).toBeVisible();
+  await settings.getByRole("tab", { name: "WebMCP" }).click();
+  await expect(settings.getByText("15", { exact: true })).toBeVisible();
+  await settings.getByRole("tab", { name: "Demo controls" }).click();
+  await settings.getByRole("button", { name: "Open tester" }).click();
+  const tester = page.getByRole("complementary", { name: "Developer Tool Tester" });
+  await expect(tester).toBeVisible();
+  expect(await tester.evaluate((element) => element.getBoundingClientRect().width >= 900)).toBe(true);
+  await tester.getByRole("button", { name: "Close developer tester" }).click();
+  await expect(tester).toBeHidden();
+});
+
+test("reset cancels an in-progress recovery and confirms the reset", async ({ page }) => {
+  await page.goto("/commander?debug=webmcp");
+  const tester = page.getByRole("complementary", { name: "Developer Tool Tester" });
+  const select = page.getByLabel("Tool", { exact: true });
+  await select.selectOption("request_rollback");
+  await tester.getByRole("button", { name: /Run Request rollback approval/ }).click();
+  await page.getByRole("button", { name: "Approve rollback" }).click();
+  await select.selectOption("execute_approved_action");
+  await tester.getByRole("button", { name: /Run Execute approved action/ }).click();
+  await expect(page.getByText("v2.18.3 · RECOVERING", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Reset demo" }).click();
+  await expect(page.getByRole("status")).toContainText("Demo reset to the initial incident");
+  await page.waitForTimeout(6_000);
+  await expect(page.getByText("18.4%", { exact: true })).toBeVisible();
+  await expect(page.getByText("v2.18.4 · DEGRADED", { exact: true })).toBeVisible();
+});

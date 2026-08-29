@@ -78,4 +78,26 @@ describe("commander state machine", () => {
       errorRate: 18.4,
     });
   });
+
+  it("cancels pending recovery timers when reset is pressed mid-rollback", () => {
+    const state = useCommanderStore.getState();
+    const previousResetRevision = state.resetRevision;
+    state.requestRollback("The release and trace evidence identify issuer validation as the cause.");
+    useCommanderStore.getState().approveAction("ACT-104");
+    useCommanderStore.getState().executeAction("ACT-104");
+    expect(useCommanderStore.getState().recoveryStage).toBe(1);
+
+    useCommanderStore.getState().resetDemo();
+    vi.runAllTimers();
+
+    expect(useCommanderStore.getState()).toMatchObject({
+      recoveryStage: 0,
+      pendingAction: null,
+      resetRevision: previousResetRevision + 1,
+    });
+    expect(useCommanderStore.getState().services.find((service) => service.name === "checkout-service")).toMatchObject({
+      version: "v2.18.4",
+      errorRate: 18.4,
+    });
+  });
 });
