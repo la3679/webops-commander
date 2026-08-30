@@ -3,6 +3,7 @@
 **Agent-native incident response with human-controlled execution.**
 
 [![CI](https://github.com/la3679/webops-commander/actions/workflows/ci.yml/badge.svg)](https://github.com/la3679/webops-commander/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/la3679/webops-commander)](https://github.com/la3679/webops-commander/releases/latest)
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2F855A.svg)](LICENSE)
@@ -11,7 +12,7 @@ WebOps Commander is a browser-based incident command center that exposes typed o
 
 The project uses a deterministic SEV-1 checkout scenario to demonstrate the complete workflow without connecting to production infrastructure or customer data.
 
-![WebOps Commander command center](public/docs/active-incident-redesign.png)
+![WebOps Commander command center](public/docs/active-incident-v2.png)
 
 ## Highlights
 
@@ -25,9 +26,9 @@ The project uses a deterministic SEV-1 checkout scenario to demonstrate the comp
 
 ## Product tour
 
-| Landing page                                              | Human approval                                              | Resolved incident                                            |
-| --------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| ![WebOps Commander landing page](public/docs/landing.png) | ![Rollback approval dialog](public/docs/human-approval.png) | ![Resolved incident view](public/docs/resolved-incident.png) |
+| Landing page                                                 | Human approval                                                 | Resolved incident                                               |
+| ------------------------------------------------------------ | -------------------------------------------------------------- | --------------------------------------------------------------- |
+| ![WebOps Commander landing page](public/docs/landing-v2.png) | ![Rollback approval dialog](public/docs/human-approval-v2.png) | ![Resolved incident view](public/docs/resolved-incident-v2.png) |
 
 ## Scenario
 
