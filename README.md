@@ -10,7 +10,7 @@ WebOps Commander is a deterministic incident-response command center that demons
 
 The UI, WebMCP handlers, simulation engine, audit history, and approval state all share one browser-owned source of truth. There is no hidden agent service or second incident model drifting away from what the operator sees.
 
-![WebOps Commander active incident](public/docs/active-incident.png)
+![WebOps Commander redesigned active-incident command center](public/docs/active-incident-redesign.png)
 
 ## What the application includes
 
