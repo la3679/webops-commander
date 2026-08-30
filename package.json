@@ -1,7 +1,25 @@
 {
   "name": "webops-commander",
-  "version": "0.1.0",
+  "version": "1.2.0",
+  "description": "A WebMCP-native incident response command center with deterministic investigation and explicit human authorization for consequential actions.",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/la3679/webops-commander.git"
+  },
+  "keywords": [
+    "webmcp",
+    "incident-response",
+    "ai-agents",
+    "human-in-the-loop",
+    "observability",
+    "nextjs",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
