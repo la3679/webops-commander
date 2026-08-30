@@ -1,39 +1,96 @@
-# WebOps Commander Demo Script
+# Demo Guide
 
-Target: **2 minutes 40 seconds**. Start on the landing page in a WebMCP-capable browser with its agent panel visible.
+This guide presents the complete WebOps Commander workflow in approximately three minutes.
 
-## 0:00–0:20 — Frame it
+## Preparation
 
-“Operational dashboards were made for humans to click through. WebOps Commander makes the website itself legible and actionable to an AI agent through native WebMCP—while keeping production-changing decisions with a human.”
+1. Start the application with `npm run dev`.
+2. Open `http://localhost:3000` in a WebMCP-capable browser.
+3. Keep the browser's agent interface visible.
+4. Use **Reset Demo** before recording to restore the initial incident.
 
-Point out Native WebMCP, Human approval, and Deterministic demo. Enter the command center.
+If native WebMCP is unavailable, use `http://localhost:3000/commander?debug=webmcp`. Describe the developer tester as a diagnostic fallback, not native transport.
+
+## 0:00–0:20 — Introduce the product
+
+> Operational dashboards were designed for people to click through. WebOps Commander exposes typed operational capabilities directly to an AI agent through WebMCP while keeping production-changing decisions under human control.
+
+Highlight the three product principles on the landing page:
+
+- native WebMCP discovery;
+- explicit human authorization;
+- deterministic and repeatable behavior.
+
+Open the command center.
 
 ## 0:20–0:40 — Establish the incident
 
-“A SEV-1 checkout incident started after a deployment. Errors are 18.4%, latency is 4.7 seconds, orders are down 38%, and exposure is $21.4K per minute.” Show the chart, checkout node, evidence tabs, and empty activity rail.
+> A SEV-1 checkout incident began immediately after a deployment. Error rate is 18.4%, p95 latency is 4.7 seconds, completed orders are down 38%, and synthetic revenue exposure is $21.4K per minute.
 
-## 0:40–1:20 — Agent investigation
+Show the telemetry chart, degraded checkout node, evidence workspace, and initially empty activity timeline.
 
-Send:
+## 0:40–1:20 — Investigate with the agent
+
+Send this prompt:
 
 > Investigate the active checkout incident. Use the available WebMCP tools to identify the root cause and recommend the safest mitigation. You may inspect anything necessary, but do not execute production-changing actions without my approval.
 
-“The agent discovers typed tools directly from the page. It reads the incident, metrics, logs, traces, topology, and deployments. It correlates the `v2.18.4` issuer-validation change with failed checkout traces while payment and inventory stay healthy.” When rollback is simulated: “Simulation predicts recovery without changing state.”
+The agent should:
 
-## 1:20–1:55 — Prove the safety boundary
+1. discover the tools registered by the page;
+2. inspect the incident and service health;
+3. query metrics and dependencies;
+4. search logs and traces;
+5. compare the latest checkout deployment;
+6. identify the issuer-validation regression in `v2.18.4`;
+7. confirm that payment and inventory remain healthy;
+8. simulate rollback to `v2.18.3`.
 
-Ask it to request the rollback if needed. “The request creates `ACT-104`; it executes nothing. The human sees the exact service, versions, rationale, predicted effect, and risk.” Optionally ask it to execute first and show `ACTION_NOT_APPROVED`.
+Emphasize that simulation predicts recovery without changing the incident.
 
-Click **Approve rollback**. “Approval still does not execute. It authorizes a separate auditable call.” Ask: “Execute approved action ACT-104 and monitor recovery.”
+## 1:20–1:55 — Demonstrate authorization
 
-## 1:55–2:25 — Recovery
+Ask the agent to request the recommended rollback.
 
-Point to version `v2.18.3`, rollback marker, KPIs, and audit trail. “Errors fall from 18.4 to 0.7 percent and latency returns to 630 milliseconds. The agent and operator see the same state.” Ask the agent to resolve once recovery completes.
+> The request creates action `ACT-104`, but nothing has executed. The operator can review the exact service, source and target versions, rationale, risk, and expected recovery.
 
-## 2:25–2:40 — Close
+Optional negative-path demonstration: ask the agent to execute before approval and show the `ACTION_NOT_APPROVED` response.
 
-“This is a real WebMCP tool surface, an explicit human approval protocol, and a deterministic end-to-end incident story—all inside one browser app.” Click **Reset demo**.
+Select **Approve rollback** in the dialog.
 
-## Backup path
+> Approval still does not execute the rollback. It authorizes a separate, auditable action.
 
-If native WebMCP is unavailable, show the honest compatibility status and open `/commander?debug=webmcp`. The developer tester invokes the same handlers and guards but must be described as a debug aid, not native WebMCP transport.
+Then ask:
+
+> Execute approved action ACT-104 and monitor recovery.
+
+## 1:55–2:25 — Observe recovery
+
+Point out:
+
+- the service version changing to `v2.18.3`;
+- the rollback marker on the telemetry chart;
+- error rate falling from 18.4% to 0.7%;
+- p95 latency returning to 630 ms;
+- corresponding events in the activity timeline.
+
+Ask the agent to resolve the incident after the monitoring stage is reached.
+
+## 2:25–2:45 — Close the demonstration
+
+> WebOps Commander demonstrates three things: a real browser-native tool surface, an explicit human authorization boundary, and a deterministic incident workflow where the agent and operator share the same state.
+
+Show the resolved summary, then select **Reset Demo** to prove that the scenario returns to the same initial condition.
+
+## Verification checklist
+
+- [ ] The WebMCP status is described accurately.
+- [ ] The agent discovers typed tools rather than relying on UI automation.
+- [ ] Investigation evidence identifies `checkout-service v2.18.4`.
+- [ ] Simulation occurs before a rollback request.
+- [ ] The request opens visible human review and does not execute.
+- [ ] Approval and execution occur as separate steps.
+- [ ] Recovery reaches 0.7% error rate and 630 ms p95 latency.
+- [ ] The activity timeline reflects tool calls and human decisions.
+- [ ] Resolution occurs only after monitoring.
+- [ ] Reset restores the initial incident.
