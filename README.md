@@ -173,6 +173,8 @@ Failures return:
 
 Every tool may also return `TOOL_EXECUTION_FAILED` for an unexpected handler exception. Mutating tools use `readOnlyHint: false`; all others use `readOnlyHint: true`. The deterministic fixtures are application-authored, so registrations use `untrustedContentHint: false`.
 
+> The complete standalone WebMCP implementation notes, including browser-verification details, are available in [`docs/WEBMCP.md`](docs/WEBMCP.md). Everything needed for a product overview remains included above.
+
 ## Human authorization is enforced
 
 Rollback uses a two-phase protocol:
@@ -202,6 +204,8 @@ flowchart TB
 ```
 
 The WebMCP boundary is intentionally thin. The registration adapter owns feature detection and cleanup. Framework-independent handlers validate input and call the deterministic engine through a Zustand-owned state adapter. React renders that same store, so the agent and human always observe the same incident.
+
+> The complete architecture document is available in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). The essential architecture, layers, trust boundaries, and operating characteristics are also included in this README.
 
 ### Technology
 
@@ -250,7 +254,9 @@ The current interface uses a custom industrial operations identity:
 - 44px minimum controls, visible focus treatment, semantic labels, keyboard-operable dialogs, and reduced-motion support;
 - responsive layouts verified at 375, 768, 1024, and 1440 pixels without page-level horizontal overflow.
 
-The repository also includes the complete visual source of truth under `design-system/webops-commander/MASTER.md`, but the rules that affect the product are summarized here so this README remains self-contained.
+The rules that affect the product are summarized here so this README remains self-contained.
+
+> The complete visual source of truth, including tokens, typography, components, layout rules, accessibility requirements, and the delivery checklist, is available in [`design-system/webops-commander/MASTER.md`](design-system/webops-commander/MASTER.md).
 
 ## Under-three-minute demo walkthrough
 
@@ -290,6 +296,8 @@ Summarize the three proofs: a real browser-native tool surface, explicit human a
 
 If native WebMCP is unavailable, show the honest compatibility status and open `/commander?debug=webmcp`. The tester exercises the same schemas, handlers, guards, approval dialog, and recovery flow, but must be described as a developer aid rather than native transport.
 
+> The complete standalone presenter script is available in [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md). The full timed walkthrough is also included above.
+
 ## Project story
 
 ### Inspiration
@@ -317,6 +325,8 @@ WebMCP changes a web interface from a picture an agent interprets into a provide
 ### Future direction
 
 Production observability and deployment adapters could replace the deterministic state adapter behind the existing contracts. A real deployment would add signed operator identities, policy-backed approval, role and environment constraints, durable/tamper-evident audit storage, secrets management, live telemetry adapters, and safe degraded behavior. Those additions belong behind the current human authorization protocol rather than replacing it.
+
+> The complete submission-ready project narrative is available in [`docs/DEVPOST_SUBMISSION.md`](docs/DEVPOST_SUBMISSION.md). Its product story is also represented in this README.
 
 ## Run locally
 
@@ -369,6 +379,19 @@ public/docs/          verified product screenshots
 tests/                unit, component, contract, and browser tests
 docs/                 architecture, WebMCP, demo, and submission guides
 ```
+
+## Complete Markdown source documents
+
+This README is the self-contained product guide; none of the following links is required to understand or run the application. Where a repository Markdown file contains additional wording, implementation evidence, or historical requirements that are not reproduced word-for-word above, its complete contents can be read here:
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — full system architecture, approval protocol, trust boundaries, accessibility, and operational behavior;
+- [`docs/WEBMCP.md`](docs/WEBMCP.md) — full WebMCP registration, contracts, audit behavior, verification, and compatibility notes;
+- [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md) — full standalone timed demonstration script and fallback path;
+- [`docs/DEVPOST_SUBMISSION.md`](docs/DEVPOST_SUBMISSION.md) — full submission draft and project narrative;
+- [`design-system/webops-commander/MASTER.md`](design-system/webops-commander/MASTER.md) — full visual design system and pre-delivery checklist;
+- [`MASTER BUILD PROMPT — WEBOPS COMMANDER.md`](MASTER%20BUILD%20PROMPT%20%E2%80%94%20WEBOPS%20COMMANDER.md) — complete original build brief and acceptance criteria;
+- [`AGENTS.md`](AGENTS.md) — repository-specific coding-agent instructions generated for the current Next.js version;
+- [`CLAUDE.md`](CLAUDE.md) — repository-specific compatibility instructions for another coding environment.
 
 ## Deliberate constraints
 
