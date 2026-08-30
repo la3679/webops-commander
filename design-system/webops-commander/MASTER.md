@@ -1,44 +1,73 @@
 # WebOps Commander design system
 
-This file is the visual source of truth. It adapts the UI/UX Pro Max operations-dashboard guidance to the authoritative product brief.
+This is the visual source of truth for the marketing and command-center surfaces. It synthesizes the UI/UX Pro Max real-time operations, developer-tool, accessibility, responsive, icon, and Next.js guidance with the product brief.
 
 ## Direction
 
-- Premium mission-control interface: dark, restrained, precise, and dense without becoming cramped.
-- Near-black canvas, cool slate panels, off-white text, blue-violet WebMCP accent, and semantic green/amber/red status colors.
-- Geist Sans for UI and Geist Mono for telemetry; operational values use tabular numerals.
-- Flat surfaces gain hierarchy through thin low-contrast borders, inner highlights, and controlled shadows—not decorative gradients or glass everywhere.
-- Motion explains state changes only: activity arrival, focused topology paths, approval entry, and deterministic recovery. Respect reduced motion.
+- Product character: industrial editorial, operational, precise, and human-controlled.
+- Avoid generic AI cues: no violet gradients, sparkles, robot marks, glowing orbs, or anonymous neural-network imagery.
+- Brand mark: custom `WC` routing-path monogram with signal-orange and telemetry-cyan endpoints.
+- Landing page: warm paper canvas, ink typography, visible grid/rule structure, asymmetric editorial hierarchy.
+- Application: graphite control room, compact telemetry, restrained depth, sharp 3–6px corners.
+- Motion explains state only and uses 150–300ms transitions. Respect reduced motion.
 
 ## Tokens
 
-| Role            | Value     |
-| --------------- | --------- |
-| Canvas          | `#07090d` |
-| Elevated canvas | `#0b0e14` |
-| Panel           | `#10141c` |
-| Panel strong    | `#151a24` |
-| Border          | `#252b37` |
-| Text            | `#f4f6f8` |
-| Muted text      | `#98a2b3` |
-| WebMCP          | `#8b83ff` |
-| Healthy         | `#36d399` |
-| Warning         | `#f5b942` |
-| Critical        | `#ff5f6d` |
+| Role                        | Landing   | Application |
+| --------------------------- | --------- | ----------- |
+| Canvas                      | `#E9E4D8` | `#0B0D0E`   |
+| Raised canvas               | `#DED8CA` | `#101315`   |
+| Panel                       | `#F5F1E7` | `#15191B`   |
+| Panel strong                | `#EBE5D8` | `#1B2022`   |
+| Border                      | `#BCB5A8` | `#2C3437`   |
+| Text                        | `#141719` | `#F4F1E8`   |
+| Muted text                  | `#5F6666` | `#97A2A5`   |
+| Primary / action            | `#FF6B35` | `#FF6B35`   |
+| Telemetry / brand secondary | `#087E79` | `#52D4CF`   |
+| Healthy                     | `#087E79` | `#35CD9B`   |
+| Warning                     | `#A26100` | `#EFB849`   |
+| Critical                    | `#B42318` | `#FF625E`   |
 
-## Component rules
+## Typography
 
-- Radius: 10px controls, 14px cards, 18px major regions.
-- Controls are at least 44px high and show an obvious `:focus-visible` ring.
-- Charts pair color with labels and a text summary. Topology has a semantic list alternative.
-- Dense dashboard spacing uses an 8/12/16/24/32px scale; landing sections may use 48/72/96px.
-- Avoid scale-on-hover for data cards. Buttons may translate by one pixel without causing layout shift.
-- At 1024px the activity rail moves below the main area; at 640px KPIs and diagnostics become single-column.
+- IBM Plex Sans: body, navigation, headings, controls.
+- JetBrains Mono: telemetry, labels, identifiers, numeric values, technical display accents.
+- Body text is at least 16px on mobile-facing long-form content with 1.5–1.75 line-height.
+- Operational values use tabular numerals.
 
-## Required checks
+## Components
 
-- Keyboard navigation follows reading order; dialog traps focus and restores it on close.
-- Contrast is at least 4.5:1 for body text.
-- No emoji icons; use Lucide SVG icons with accessible labels where needed.
-- No horizontal overflow at 375, 768, 1024, or 1440px.
-- `prefers-reduced-motion: reduce` removes non-essential transitions and recovery tweening.
+- Controls are at least 44px high, use visible focus rings, and have hover/pressed/disabled states.
+- Buttons use 3px corners; panels use 6px corners; tags use 2px corners.
+- Panels use thin borders and a small orange registration corner rather than glass or glow.
+- Status always combines color with a label and/or icon.
+- Use Lucide outline icons consistently for interface actions. The brand mark is a bespoke inline SVG.
+- Charts include labels and a screen-reader text summary.
+- Dialogs provide a clear close or decision path and retain Radix focus management.
+
+## Layout
+
+- Landing max width: 1320px. Application max width: 1720px.
+- Spacing follows a 4/8px system with dense dashboard gaps and larger landing section intervals.
+- Check 375, 768, 1024, and 1440px. No horizontal page overflow.
+- Below 1024px, the activity rail follows the main application content. Below 640px, dense grids collapse.
+- Landing information architecture follows the feature-rich operations pattern: hero and live preview, command-center overview, full tool surface, human/agent model, response lifecycle, safety and architecture, scope, and final launch CTA.
+- Long-form sections use short introductions, numbered grids, compact factual labels, and repeated visual rules to remain scannable.
+
+## Accessibility and performance
+
+- Normal text contrast is at least 4.5:1.
+- Keyboard order matches reading order; all icon-only buttons have accessible labels.
+- Touch targets are at least 44×44px with 8px spacing where possible.
+- Never remove focus rings or disable zoom.
+- Respect `prefers-reduced-motion`; do not rely on hover for essential information.
+- Server components stay server-rendered; client boundaries remain limited to interactive application leaves.
+
+## Pre-delivery checklist
+
+- [ ] No emoji or generic AI logoography.
+- [ ] All interactions retain existing behavior.
+- [ ] Focus, hover, active, disabled, empty, warning, and success states remain legible.
+- [ ] 375 / 768 / 1024 / 1440 responsive checks pass.
+- [ ] Reduced motion is respected.
+- [ ] No console errors, type errors, lint errors, or failing tests.

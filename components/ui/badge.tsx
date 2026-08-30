@@ -7,9 +7,9 @@ export function Badge({ className, tone = "neutral", ...props }: HTMLAttributes<
   return (
     <span
       className={cn(
-        "inline-flex min-h-6 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-0.5 text-[11px] font-bold tracking-[0.08em] uppercase",
+        "inline-flex min-h-6 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[2px] border px-2.5 py-0.5 font-mono text-[10px] font-semibold tracking-[0.08em] uppercase",
         tone === "neutral" && "border-[var(--border)] bg-white/[0.035] text-[var(--muted)]",
-        tone === "accent" && "border-violet-400/25 bg-violet-400/10 text-violet-200",
+        tone === "accent" && "border-[var(--accent-border)] bg-[var(--accent-wash)] text-[var(--accent-text)]",
         tone === "critical" && "border-red-400/30 bg-red-400/10 text-red-300",
         tone === "warning" && "border-amber-400/30 bg-amber-400/10 text-amber-200",
         tone === "healthy" && "border-emerald-400/25 bg-emerald-400/10 text-emerald-300",
