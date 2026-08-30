@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Clipboard, CircleAlert, Sparkles } from "lucide-react";
+import { Braces, Check, Clipboard, CircleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Panel } from "@/components/ui/panel";
 import { useCommanderStore } from "@/lib/store/use-commander-store";
@@ -19,10 +19,10 @@ export function PromptCard() {
     window.setTimeout(() => setCopied(false), 1800);
   };
   return (
-    <Panel className="border-violet-300/15 bg-violet-400/[.035] p-5">
+    <Panel className="border-[var(--accent-border)] bg-[var(--accent-wash)] p-5">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-violet-300/20 bg-violet-400/10 text-violet-200">
-          <Sparkles aria-hidden="true" size={17} />
+        <span className="grid size-10 shrink-0 place-items-center rounded-[4px] border border-[var(--accent-border)] bg-[var(--accent-wash)] text-[var(--accent-text)]">
+          <Braces aria-hidden="true" size={17} />
         </span>
         <div className="min-w-0 flex-1">
           <h2 className="text-sm font-semibold">Recommended agent prompt</h2>

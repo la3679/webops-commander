@@ -14,7 +14,7 @@ export function CommandHeader({ onOpenSettings }: { onOpenSettings: () => void }
   const isResolved = incident.status === "RESOLVED";
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#090c11]/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[#0b0d0e]/96 backdrop-blur-xl">
       <div className="mx-auto flex min-h-[72px] max-w-[1720px] items-center gap-2 px-3 sm:gap-4 sm:px-5 xl:px-6">
         <Link aria-label="WebOps Commander home" href="/">
           <BrandMark className="hidden sm:inline-flex" />
@@ -49,7 +49,7 @@ export function CommandHeader({ onOpenSettings }: { onOpenSettings: () => void }
           </Badge>
           <a
             aria-label="Open GitHub repository"
-            className="hidden min-h-11 min-w-11 items-center justify-center rounded-[10px] text-[var(--muted)] transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] sm:inline-flex"
+            className="hidden min-h-11 min-w-11 items-center justify-center rounded-[3px] text-[var(--muted)] transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] sm:inline-flex"
             href="https://github.com/la3679/webops-commander"
             rel="noreferrer"
             target="_blank"

@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, CheckCircle2, CircleEllipsis, Clock3, LockKeyhole, UserRound, XCircle } from "lucide-react";
+import { CheckCircle2, CircleEllipsis, Clock3, LockKeyhole, RadioTower, UserRound, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Panel } from "@/components/ui/panel";
 import { useCommanderStore } from "@/lib/store/use-commander-store";
@@ -13,7 +13,7 @@ export function ActivityRail() {
       <div className="border-b border-[var(--border)] px-5 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm font-semibold">
-            <Bot aria-hidden="true" className="text-violet-300" size={17} />
+            <RadioTower aria-hidden="true" className="text-[var(--info)]" size={17} />
             Agent activity
           </div>
           <Badge tone={status === "CONNECTED" ? "accent" : "neutral"}>{activities.length} events</Badge>
@@ -23,7 +23,7 @@ export function ActivityRail() {
       <div aria-live="polite" className="h-[calc(100%-75px)] overflow-auto px-4 py-4">
         {activities.length === 0 ? (
           <div className="flex h-full min-h-[360px] flex-col items-center justify-center px-5 text-center">
-            <span className="grid size-11 place-items-center rounded-xl border border-violet-300/20 bg-violet-400/[.07] text-violet-200">
+            <span className="grid size-11 place-items-center rounded-[4px] border border-[var(--accent-border)] bg-[var(--accent-wash)] text-[var(--accent-text)]">
               <CircleEllipsis aria-hidden="true" size={19} />
             </span>
             <h2 className="mt-4 text-sm font-semibold">Ready for an agent</h2>
@@ -53,7 +53,7 @@ export function ActivityRail() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-start justify-between gap-2">
-                    <span className="break-all font-mono text-[11px] text-slate-100">{activity.toolName}</span>
+                    <span className="break-all font-mono text-[11px] text-[var(--text)]">{activity.toolName}</span>
                     <Badge
                       tone={
                         activity.category === "ACTION"
@@ -69,7 +69,7 @@ export function ActivityRail() {
                     </Badge>
                   </div>
                   <p className="mt-1 truncate text-[10px] text-[var(--muted)]">{activity.inputSummary || "No input"}</p>
-                  <p className="mt-2 text-[11px] leading-4 text-slate-300">{activity.resultSummary}</p>
+                  <p className="mt-2 text-[11px] leading-4 text-[var(--muted-strong)]">{activity.resultSummary}</p>
                   <div className="mt-2 flex items-center gap-1 text-[9px] text-[var(--muted)]">
                     <Clock3 aria-hidden="true" size={9} />
                     {new Date(activity.timestamp).toLocaleTimeString([], { hour12: false })} · {activity.durationMs}ms ·{" "}

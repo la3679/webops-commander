@@ -56,7 +56,7 @@ export function KpiGrid() {
       {cards.map(({ label, value, delta, icon: Icon, danger, description }, index) => (
         <Panel
           aria-describedby={`kpi-help-${index}`}
-          className="group relative min-w-0 cursor-help p-4 transition-[border-color,background-color] duration-200 hover:border-slate-500 hover:bg-[var(--panel-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] sm:p-5"
+          className="group relative min-w-0 cursor-help overflow-visible p-4 transition-[border-color,background-color] duration-200 hover:border-[var(--border-strong)] hover:bg-[var(--panel-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] sm:p-5"
           key={label}
           tabIndex={0}
         >
@@ -87,7 +87,7 @@ export function KpiGrid() {
             {delta}
           </div>
           <div
-            className="pointer-events-none absolute inset-x-3 top-12 z-20 translate-y-1 rounded-lg border border-[var(--border-strong)] bg-[#090d13]/98 p-3 text-[11px] leading-5 text-slate-200 opacity-0 shadow-2xl transition-[opacity,transform] duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100"
+            className="pointer-events-none absolute inset-x-3 top-12 z-20 translate-y-1 rounded-[3px] border border-[var(--border-strong)] bg-[#0b0e0f]/98 p-3 text-[11px] leading-5 text-slate-200 opacity-0 shadow-2xl transition-[opacity,transform] duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100"
             id={`kpi-help-${index}`}
             role="tooltip"
           >

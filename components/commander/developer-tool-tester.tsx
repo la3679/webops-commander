@@ -61,7 +61,7 @@ export function DeveloperToolTester({ open, onOpenChange }: { open: boolean; onO
   return (
     <aside
       aria-label="Developer Tool Tester"
-      className="fixed inset-x-3 bottom-3 z-30 mx-auto max-h-[calc(100dvh-1.5rem)] max-w-6xl overflow-x-hidden overflow-y-auto rounded-[18px] border border-amber-300/25 bg-[#12161f]/97 p-5 shadow-[0_30px_100px_rgba(0,0,0,.75)] backdrop-blur-xl sm:inset-x-5 sm:bottom-5 sm:p-6"
+      className="fixed inset-x-3 bottom-3 z-30 mx-auto max-h-[calc(100dvh-1.5rem)] max-w-6xl overflow-x-hidden overflow-y-auto rounded-[6px] border border-amber-300/25 bg-[var(--panel)]/97 p-5 shadow-[0_30px_100px_rgba(0,0,0,.75)] backdrop-blur-xl sm:inset-x-5 sm:bottom-5 sm:p-6"
     >
       <div className="flex items-center gap-3">
         <span className="grid size-9 place-items-center rounded-lg bg-amber-300/10 text-amber-200">
@@ -85,7 +85,7 @@ export function DeveloperToolTester({ open, onOpenChange }: { open: boolean; onO
             Tool
           </label>
           <select
-            className="mt-1 min-h-11 w-full rounded-lg border border-[var(--border-strong)] bg-[#090c11] px-3 text-xs"
+            className="mt-1 min-h-11 w-full rounded-[3px] border border-[var(--border-strong)] bg-[#0b0e0f] px-3 text-xs"
             id="tool-select"
             onChange={(event) => changeTool(event.target.value as ToolName)}
             value={name}
@@ -106,7 +106,7 @@ export function DeveloperToolTester({ open, onOpenChange }: { open: boolean; onO
             JSON input
           </label>
           <textarea
-            className="mt-1 h-44 w-full resize-y rounded-lg border border-[var(--border-strong)] bg-[#090c11] p-4 font-mono text-[11px] leading-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] lg:h-64"
+            className="mt-1 h-44 w-full resize-y rounded-[3px] border border-[var(--border-strong)] bg-[#0b0e0f] p-4 font-mono text-[11px] leading-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] lg:h-64"
             id="tool-input"
             onChange={(event) => setInput(event.target.value)}
             value={input}
@@ -114,7 +114,7 @@ export function DeveloperToolTester({ open, onOpenChange }: { open: boolean; onO
         </div>
         <div className="min-w-0">
           <div className="text-[10px] font-bold text-[var(--muted)] uppercase">Structured result</div>
-          <pre className="mt-1 h-44 overflow-auto whitespace-pre-wrap break-words rounded-lg border border-[var(--border)] bg-[#090c11] p-4 text-[10px] leading-5 text-slate-300 lg:h-64">
+          <pre className="mt-1 h-44 overflow-auto whitespace-pre-wrap break-words rounded-[3px] border border-[var(--border)] bg-[#0b0e0f] p-4 text-[10px] leading-5 text-slate-300 lg:h-64">
             {output}
           </pre>
         </div>

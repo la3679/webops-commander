@@ -26,8 +26,8 @@ export function DiagnosticsPanel() {
               className={cn(
                 "inline-flex min-h-11 cursor-pointer items-center gap-2 border-b-2 px-3 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]",
                 tab === label
-                  ? "border-violet-400 text-white"
-                  : "border-transparent text-[var(--muted)] hover:text-slate-200",
+                  ? "border-[var(--accent)] text-white"
+                  : "border-transparent text-[var(--muted)] hover:text-[var(--text)]",
               )}
               key={label}
               onClick={() => setTab(label)}
@@ -59,8 +59,8 @@ export function DiagnosticsPanel() {
                 >
                   {log.severity}
                 </span>
-                <span className="truncate text-violet-200">{log.service}</span>
-                <span className="break-words text-slate-300">
+                <span className="truncate text-[var(--info)]">{log.service}</span>
+                <span className="break-words text-[var(--muted-strong)]">
                   {log.message} <span className="text-[var(--muted)]">trace={log.correlationId}</span>
                 </span>
               </div>
@@ -70,7 +70,7 @@ export function DiagnosticsPanel() {
         {tab === "Traces" && (
           <div className="space-y-3">
             {traces.map((trace) => (
-              <div className="rounded-xl border border-[var(--border)] bg-black/15 p-3" key={trace.id}>
+              <div className="rounded-[4px] border border-[var(--border)] bg-black/15 p-3" key={trace.id}>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-200">{trace.correlationId}</span>
                   <span className={trace.status === "ERROR" ? "text-red-300" : "text-emerald-300"}>
@@ -81,7 +81,7 @@ export function DiagnosticsPanel() {
                   {trace.spans.map((span, index) => (
                     <div className="flex items-start gap-2" key={`${trace.id}-${span.operation}`}>
                       <span className="text-[var(--muted)]">{index + 1}.</span>
-                      <span className="text-violet-200">{span.service}</span>
+                      <span className="text-[var(--info)]">{span.service}</span>
                       <span className="text-slate-300">{span.operation}</span>
                       <span className="ml-auto text-[var(--muted)]">{span.durationMs}ms</span>
                       {span.status === "ERROR" && <span className="text-red-300">ERROR</span>}
@@ -95,9 +95,9 @@ export function DiagnosticsPanel() {
         {tab === "Deployments" && (
           <div className="space-y-3">
             {deployments.map((deployment) => (
-              <div className="rounded-xl border border-[var(--border)] bg-black/15 p-4" key={deployment.id}>
+              <div className="rounded-[4px] border border-[var(--border)] bg-black/15 p-4" key={deployment.id}>
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-violet-200">{deployment.service}</span>
+                  <span className="text-[var(--info)]">{deployment.service}</span>
                   <span className="text-[var(--muted)]">{deployment.deployedAt.slice(11, 19)} UTC</span>
                 </div>
                 <div className="mt-2 text-sm text-slate-200">

@@ -43,7 +43,7 @@ export function CommanderShell() {
   }, [resetRevision]);
 
   return (
-    <main id="main-content" className="min-h-screen bg-[var(--canvas)]">
+    <main id="main-content" className="commander-canvas min-h-screen bg-[var(--canvas)]">
       <CommandHeader onOpenSettings={() => setSettingsOpen(true)} />
       <div className="mx-auto grid max-w-[1720px] gap-4 px-3 py-4 sm:px-5 lg:grid-cols-[minmax(0,1fr)_330px] xl:px-6">
         <div className="min-w-0 space-y-4">
@@ -74,7 +74,7 @@ export function CommanderShell() {
       {resetNoticeVisible && (
         <div
           aria-live="polite"
-          className="fixed right-4 top-20 z-[70] flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-xl border border-emerald-300/25 bg-[#102019] px-4 py-3 text-xs font-semibold text-emerald-100 shadow-2xl"
+          className="fixed right-4 top-20 z-[70] flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-[4px] border border-emerald-300/25 bg-[#102019] px-4 py-3 text-xs font-semibold text-emerald-100 shadow-2xl"
           role="status"
         >
           <CheckCircle2 aria-hidden="true" size={16} /> Demo reset to the initial incident.

@@ -32,34 +32,34 @@ export function IncidentChart() {
           <AreaChart data={data} margin={{ top: 12, right: 16, left: -14, bottom: 0 }}>
             <defs>
               <linearGradient id="error-fill" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stopColor="#ff5f6d" stopOpacity={0.3} />
-                <stop offset="100%" stopColor="#ff5f6d" stopOpacity={0} />
+                <stop offset="0%" stopColor="#ff625e" stopOpacity={0.3} />
+                <stop offset="100%" stopColor="#ff625e" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid stroke="#202631" strokeDasharray="3 5" vertical={false} />
-            <XAxis axisLine={false} dataKey="time" fontSize={11} stroke="#7f8998" tickLine={false} />
+            <CartesianGrid stroke="#293033" strokeDasharray="3 5" vertical={false} />
+            <XAxis axisLine={false} dataKey="time" fontSize={11} stroke="#859093" tickLine={false} />
             <YAxis
               axisLine={false}
               domain={[0, 20]}
               fontSize={11}
-              stroke="#7f8998"
+              stroke="#859093"
               tickFormatter={(value) => `${value}%`}
               tickLine={false}
             />
             <Tooltip
-              contentStyle={{ background: "#111722", border: "1px solid #303746", borderRadius: 10, fontSize: 12 }}
+              contentStyle={{ background: "#15191b", border: "1px solid #414d51", borderRadius: 4, fontSize: 12 }}
               formatter={(value) => [`${value}%`, "Error rate"]}
             />
             <ReferenceLine
-              label={{ value: "DEPLOY v2.18.4", fill: "#bcb8ff", fontSize: 10, position: "insideTopRight" }}
-              stroke="#8b83ff"
+              label={{ value: "DEPLOY v2.18.4", fill: "#7ae1dc", fontSize: 10, position: "insideTopRight" }}
+              stroke="#52d4cf"
               strokeDasharray="4 5"
               x="12:00"
             />
             {stage > 0 && (
               <ReferenceLine
                 label={{ value: "ROLLBACK v2.18.3", fill: "#86efc3", fontSize: 10, position: "insideTopRight" }}
-                stroke="#36d399"
+                stroke="#35cd9b"
                 strokeDasharray="4 5"
                 x="12:04"
               />
@@ -69,7 +69,7 @@ export function IncidentChart() {
               dataKey="errorRate"
               fill="url(#error-fill)"
               isAnimationActive
-              stroke="#ff6f7c"
+              stroke="#ff716d"
               strokeWidth={2.5}
               type="monotone"
             />

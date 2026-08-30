@@ -36,10 +36,10 @@ export function SettingsDialog({
         <Dialog.Overlay className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm data-[state=open]:animate-[fade-in_.2s_ease-out]" />
         <Dialog.Content
           aria-describedby="settings-description"
-          className="fixed left-1/2 top-1/2 z-50 max-h-[90dvh] w-[calc(100%-2rem)] max-w-[680px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[18px] border border-[var(--border-strong)] bg-[#10151e] shadow-[0_35px_120px_rgba(0,0,0,.75)] focus:outline-none"
+          className="fixed left-1/2 top-1/2 z-50 max-h-[90dvh] w-[calc(100%-2rem)] max-w-[680px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[6px] border border-[var(--border-strong)] bg-[var(--panel)] shadow-[0_35px_120px_rgba(0,0,0,.75)] focus:outline-none"
         >
           <header className="flex items-start gap-4 border-b border-[var(--border)] p-5 sm:p-6">
-            <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-violet-300/20 bg-violet-400/10 text-violet-200">
+            <span className="grid size-11 shrink-0 place-items-center rounded-[4px] border border-[var(--accent-border)] bg-[var(--accent-wash)] text-[var(--accent-text)]">
               <Settings2 aria-hidden="true" size={20} />
             </span>
             <div className="min-w-0 flex-1">
@@ -64,7 +64,7 @@ export function SettingsDialog({
                   className={cn(
                     "min-h-11 cursor-pointer border-b-2 px-4 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]",
                     tab === name
-                      ? "border-violet-300 text-white"
+                      ? "border-[var(--accent)] text-white"
                       : "border-transparent text-[var(--muted)] hover:text-white",
                   )}
                   id={`settings-tab-${name}`}
@@ -103,7 +103,7 @@ export function SettingsDialog({
                   icon={RotateCcw}
                   title="Reset incident simulation"
                 />
-                <div className="flex gap-3 rounded-xl border border-emerald-300/15 bg-emerald-300/[.045] p-4 text-xs leading-5 text-emerald-100">
+                <div className="flex gap-3 rounded-[4px] border border-emerald-300/15 bg-emerald-300/[.045] p-4 text-xs leading-5 text-emerald-100">
                   <CheckCircle2 aria-hidden="true" className="mt-0.5 shrink-0" size={16} />
                   Settings affect only this deterministic browser session. No production system or customer data is
                   connected.
@@ -116,10 +116,10 @@ export function SettingsDialog({
                 id="settings-panel-webmcp"
                 role="tabpanel"
               >
-                <div className="rounded-xl border border-[var(--border)] bg-black/15 p-5">
+                <div className="rounded-[4px] border border-[var(--border)] bg-black/15 p-5">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-2 text-sm font-semibold">
-                      <ShieldCheck aria-hidden="true" className="text-violet-200" size={17} /> Native transport
+                      <ShieldCheck aria-hidden="true" className="text-[var(--info)]" size={17} /> Native transport
                     </div>
                     <Badge tone={webMcpStatus === "CONNECTED" ? "healthy" : "neutral"}>
                       {webMcpStatus === "CONNECTED" ? "Connected" : "Unavailable here"}
@@ -139,7 +139,7 @@ export function SettingsDialog({
                     <Bug aria-hidden="true" size={15} /> Open debug fallback
                   </Button>
                   <a
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[10px] border border-[var(--border-strong)] px-4 text-sm font-semibold transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[3px] border border-[var(--border-strong)] px-4 text-sm font-semibold transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
                     href="https://github.com/la3679/webops-commander/blob/main/docs/WEBMCP.md"
                     rel="noreferrer"
                     target="_blank"
@@ -168,7 +168,7 @@ function SettingRow({
   action: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-[var(--border)] bg-black/15 p-4 sm:flex-row sm:items-center">
+    <div className="flex flex-col gap-4 rounded-[4px] border border-[var(--border)] bg-black/15 p-4 sm:flex-row sm:items-center">
       <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-white/[.045] text-slate-300">
         <Icon aria-hidden="true" size={17} />
       </span>

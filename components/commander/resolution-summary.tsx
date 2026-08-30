@@ -33,7 +33,7 @@ export function ResolutionSummary() {
             ["12:02:07", "Rollback approved"],
             ["12:02:25", "Recovery"],
           ].map(([value, label]) => (
-            <div className="rounded-xl border border-[var(--border)] bg-black/15 p-4" key={label}>
+            <div className="rounded-[4px] border border-[var(--border)] bg-black/15 p-4" key={label}>
               <Clock3 aria-hidden="true" className="text-emerald-300" size={15} />
               <div className="tabular-nums mt-4 font-mono text-sm">{value}</div>
               <div className="mt-1 text-[10px] text-[var(--muted)]">{label}</div>
@@ -41,13 +41,13 @@ export function ResolutionSummary() {
           ))}
         </div>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
-          <div className="rounded-xl border border-[var(--border)] bg-black/15 p-5">
+          <div className="rounded-[4px] border border-[var(--border)] bg-black/15 p-5">
             <div className="text-[10px] font-bold tracking-[.1em] text-[var(--muted)] uppercase">Cause</div>
             <p className="mt-3 text-sm leading-6 text-slate-200">
               checkout-service v2.18.4 introduced incompatible payment token issuer validation.
             </p>
           </div>
-          <div className="rounded-xl border border-[var(--border)] bg-black/15 p-5">
+          <div className="rounded-[4px] border border-[var(--border)] bg-black/15 p-5">
             <div className="text-[10px] font-bold tracking-[.1em] text-[var(--muted)] uppercase">Resolution</div>
             <p className="mt-3 text-sm leading-6 text-slate-200">
               Rolled back to v2.18.3 and verified deterministic telemetry recovery.
@@ -69,8 +69,8 @@ export function ResolutionSummary() {
 }
 function Outcome({ icon: Icon, label, value }: { icon: typeof Check; label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-[var(--border)] bg-white/[.02] p-4">
-      <Icon aria-hidden="true" className="text-violet-200" size={15} />
+    <div className="rounded-[4px] border border-[var(--border)] bg-white/[.02] p-4">
+      <Icon aria-hidden="true" className="text-[var(--info)]" size={15} />
       <div className="tabular-nums mt-4 text-2xl font-semibold">{value}</div>
       <div className="mt-1 text-[10px] leading-4 text-[var(--muted)]">{label}</div>
     </div>
